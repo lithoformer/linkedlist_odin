@@ -38,7 +38,7 @@ class LinkedList {
     size() {
         let traverse = this.head;
         let count = 0;
-        while (traverse != null) {
+        while (traverse !== null) {
             traverse = traverse.nextNode;
             count++;
         }
@@ -51,7 +51,7 @@ class LinkedList {
 
     tail() {
         let traverse = this.head;
-        while (traverse.nextNode != null) {
+        while (traverse.nextNode !== null) {
             traverse = traverse.nextNode;
         }
         return traverse.value;
@@ -75,7 +75,7 @@ class LinkedList {
 
     contains(value) {
         let traverse = this.head;
-        while (traverse != null) {
+        while (traverse !== null) {
             if (traverse.value === value) {
                 return true;
             }
@@ -87,7 +87,7 @@ class LinkedList {
     find(value) {
         let traverse = this.head;
         let idx = 0;
-        while (traverse != null) {
+        while (traverse !== null) {
             if (traverse.value === value) {
                 return idx;
             }
@@ -107,24 +107,34 @@ class LinkedList {
     }
 
     insertAt(value, index) {
-        let traverse = this.head;
-        for (let i = 0; i < index; i++) {
-            traverse = traverse.nextNode;
+        if (index === 0) {
+            this.prepend(value);
         }
-        let node = new Node(value, traverse);
-        traverse = this.head;
-        for (let i = 0; i < index - 1; i++) {
-            traverse = traverse.nextNode;
+        else {
+            let traverse = this.head;
+            for (let i = 0; i < index; i++) {
+                traverse = traverse.nextNode;
+            }
+            let node = new Node(value, traverse);
+            traverse = this.head;
+            for (let i = 0; i < index - 1; i++) {
+                traverse = traverse.nextNode;
+            }
+            traverse.nextNode = node;
         }
-        traverse.nextNode = node;
     }
 
     removeAt(index) {
-        let traverse = this.head;
-        for (let i = 0; i < index - 1; i++) {
-            traverse = traverse.nextNode;
+        if (index === 0) {
+            this.head = this.head.nextNode;
         }
-        traverse.nextNode = traverse.nextNode.nextNode;
+        else {
+            let traverse = this.head;
+            for (let i = 0; i < index - 1; i++) {
+                traverse = traverse.nextNode;
+            }
+            traverse.nextNode = traverse.nextNode.nextNode;
+        }
     }
 }
 

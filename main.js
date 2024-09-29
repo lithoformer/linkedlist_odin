@@ -35,10 +35,10 @@ console.log(`the statement that the list contains \"monkey\" is ${list.contains(
 
 console.log(`the index of the list containing \"parrot\" is ${list.find('parrot')}`);
 
-list.insertAt('chicken', 5);
+list.insertAt('chicken', 0);
 
 console.log(list.toString());
 
-list.removeAt(5);
+list.removeAt(0);
 
 console.log(list.toString());
